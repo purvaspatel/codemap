@@ -1,11 +1,11 @@
 [project]
-name = "codemap"
-version = "0.1.0"
+name = "codemap-cli"
+version = "0.1.1"
 description = "A deterministic filesystem mapper optimized for AI context"
 authors = [{ name = "Purva Sanjay Patel" }]
 dependencies = ["typer"]
 requires-python = ">=3.9"
-
+readme = "README.md"
 [project.scripts]
 codemap = "codemap.cli:app"
 
