@@ -1,5 +1,7 @@
 # CodeMap CLI
 
+![CodeMap Preview](https://raw.githubusercontent.com/purvaspatel/codemap/main/assets/image.png)
+
 AI-ready project structure generator for developers.
 
 CodeMap generates a clean, IDE-style tree of your project so you can easily share your codebase structure with AI tools like ChatGPT or Claude.
@@ -33,27 +35,3 @@ CodeMap solves this by generating a clean, deterministic structure of your repos
 
 ```bash
 pip install codemap-cli
-```
-
-## Usage
-```bash
-codemap
-```
-- on your terminal inside root project
-
-## Example Output
-```text
-my-awesome-project/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── utils/
-├── public/
-├── tests/
-├── .gitignore
-├── package.json
-├── pyproject.toml
-├── README.md
-└── tsconfig.json
-
-
