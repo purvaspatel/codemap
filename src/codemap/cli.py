@@ -1,3 +1,4 @@
+import subprocess
 import typer
 from pathlib import Path
 from .root import find_project_root, detect_plugin
@@ -56,15 +57,14 @@ def main():
                 "No structural changes detected. codemap.md is up to date.",
                 fg=typer.colors.BLUE,
             )
-            raise typer.Exit()
+        else:
+            # Structure changed → rewrite file with new timestamp
+            write_file(output_file, new_content)
 
-        # Structure changed → rewrite file with new timestamp
-        write_file(output_file, new_content)
-
-        typer.secho(
-            "codemap.md updated successfully.",
-            fg=typer.colors.YELLOW,
-        )
+            typer.secho(
+                "codemap.md updated successfully.",
+                fg=typer.colors.YELLOW,
+            )
     else:
         write_file(output_file, new_content)
 
@@ -72,3 +72,20 @@ def main():
             "codemap.md generated successfully.",
             fg=typer.colors.GREEN,
         )
+
+    typer.echo()
+    typer.echo(tree_text)
+
+    try:
+        subprocess.run("pbcopy", input=tree_text.encode(), check=True)
+        typer.secho("Tree copied to clipboard.", fg=typer.colors.GREEN)
+    except FileNotFoundError:
+        try:
+            subprocess.run(
+                ["xclip", "-selection", "clipboard"],
+                input=tree_text.encode(),
+                check=True,
+            )
+            typer.secho("Tree copied to clipboard.", fg=typer.colors.GREEN)
+        except FileNotFoundError:
+            pass
