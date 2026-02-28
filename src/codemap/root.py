@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional
 from .plugins.python import PythonPlugin
 from .plugins.javascript import JavaScriptPlugin
 
@@ -7,7 +8,7 @@ PLUGINS = [
     JavaScriptPlugin(),
 ]
 
-def find_project_root(start_path: Path) -> Path | None:
+def find_project_root(start_path: Path) -> Optional[Path]:
     current = start_path.resolve()
 
     while current != current.parent:
